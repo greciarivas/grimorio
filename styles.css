@@ -1,0 +1,624 @@
+/* ============================================================
+   GRECIA'S GRIMOIRE - ESTILOS PASTEL GOTH & WHIMSIGOTH
+   Inspirado en la paleta oficial de 5 rosas y estética Akumai
+   ============================================================ */
+
+:root {
+  /* La Paleta Exacta de 5 Rosas de tu imagen */
+  --soft-blush: #FFDBDB;
+  --pastel-pink: #FDC3D1;
+  --baby-pink: #FDA8BF;
+  --bubblegum-tint: #FB8CAC;
+  --bubblegum-pink: #FF5C89;
+
+  /* Tipografías */
+  --font-gothic: 'Pirata One', 'Cinzel Decorative', cursive;
+  --font-body: 'Quicksand', sans-serif;
+
+  /* Transición suave */
+  --transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 26px;
+}
+
+/* ==================== MODO 1: VAMPIRE VELVET (OSCURO) ==================== */
+html[data-theme="dark"] {
+  --bg-main: #0c0612;
+  --bg-frame: rgba(22, 11, 30, 0.92);
+  --bg-card: rgba(33, 16, 45, 0.75);
+  --bg-input: #150b20;
+  --text-main: #fff0f5;
+  --text-muted: #d8b4e2;
+  --border-color: rgba(255, 92, 137, 0.35);
+  --border-glow: 0 0 20px rgba(255, 92, 137, 0.28);
+  --accent-primary: var(--bubblegum-pink);
+  --accent-secondary: var(--bubblegum-tint);
+  --star-color: var(--bubblegum-pink);
+}
+
+/* ==================== MODO 2: PASTEL FAIRY (CLARO) ==================== */
+html[data-theme="light"] {
+  --bg-main: #fff0f4;
+  --bg-frame: rgba(255, 255, 255, 0.95);
+  --bg-card: #ffe6ed;
+  --bg-input: #ffffff;
+  --text-main: #2b0b1c;
+  --text-muted: #7d3356;
+  --border-color: var(--baby-pink);
+  --border-glow: 0 0 15px rgba(253, 168, 191, 0.45);
+  --accent-primary: var(--bubblegum-pink);
+  --accent-secondary: #c93b68;
+  --star-color: var(--bubblegum-pink);
+}
+
+/* Base Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-main);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+  transition: background-color 0.4s ease;
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(255, 92, 137, 0.12) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(251, 140, 172, 0.15) 0%, transparent 45%);
+}
+
+/* ==================== MARCO GÓTICO VICTORIANO ==================== */
+.gothic-frame {
+  position: relative;
+  width: 100%;
+  max-width: 680px;
+  background: var(--bg-frame);
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  padding: 2.5rem 2.2rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5), var(--border-glow);
+  backdrop-filter: blur(12px);
+  transition: var(--transition);
+}
+
+/* Estrellitas victorianas ✦ en las 4 esquinas */
+.corner-star {
+  position: absolute;
+  color: var(--star-color);
+  font-size: 1.4rem;
+  line-height: 1;
+  text-shadow: 0 0 10px var(--accent-primary);
+  pointer-events: none;
+}
+.top-left { top: 12px; left: 16px; }
+.top-right { top: 12px; right: 16px; }
+.bottom-left { bottom: 12px; left: 16px; }
+.bottom-right { bottom: 12px; right: 16px; }
+
+/* ==================== ENCABEZADO AKUMAI ==================== */
+.grimoire-header {
+  text-align: center;
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.header-emblem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.emblem-wing {
+  font-size: 1.8rem;
+  animation: floatWing 3s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 8px rgba(255, 92, 137, 0.5));
+}
+.emblem-wing.right {
+  animation-delay: 1.5s;
+}
+
+@keyframes floatWing {
+  from { transform: translateY(0) rotate(0deg); }
+  to { transform: translateY(-5px) rotate(6deg); }
+}
+
+.gothic-title {
+  font-family: var(--font-gothic);
+  font-size: 2.6rem;
+  letter-spacing: 0.04em;
+  background: linear-gradient(135deg, var(--bubblegum-pink), var(--pastel-pink));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 10px rgba(255, 92, 137, 0.4));
+}
+
+.header-subtitle {
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+  font-weight: 700;
+}
+
+/* Botón Cambiador de Tema */
+.btn-theme-toggle {
+  margin-top: 1rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-main);
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.btn-theme-toggle:hover {
+  transform: scale(1.05);
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 15px rgba(255, 92, 137, 0.4);
+}
+
+/* ==================== BARRA DE PESTAÑAS (TABS) ==================== */
+.grimoire-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8rem;
+  margin-bottom: 2rem;
+}
+
+.tab-btn {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: var(--text-muted);
+  padding: 0.85rem 1.2rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  transition: var(--transition);
+}
+
+.tab-btn:hover {
+  color: var(--text-main);
+  border-color: var(--accent-primary);
+  transform: translateY(-2px);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, var(--bubblegum-pink) 0%, var(--bubblegum-tint) 100%);
+  color: #0c0612;
+  border-color: transparent;
+  box-shadow: 0 6px 20px rgba(255, 92, 137, 0.45);
+  font-weight: 800;
+}
+
+/* Ocultar/Mostrar contenido de pestañas */
+.tab-content {
+  display: none;
+  animation: fadeIn 0.35s ease-in-out;
+}
+.tab-content.active {
+  display: block;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ==================== PESTAÑA 1: DIARIO (GRIMORIO) ==================== */
+.compose-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.4rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+.compose-label {
+  display: block;
+  font-size: 0.92rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.75rem;
+}
+
+textarea#diaryInput {
+  width: 100%;
+  background: var(--bg-input);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  color: var(--text-main);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  padding: 0.9rem 1.1rem;
+  resize: vertical;
+  outline: none;
+  transition: var(--transition);
+  min-height: 90px;
+}
+
+textarea#diaryInput:focus {
+  border-color: var(--accent-primary);
+  box-shadow: 0 0 0 3px rgba(255, 92, 137, 0.25);
+}
+
+.compose-footer {
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.mood-box {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.mood-title {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+select#diaryMood {
+  background: var(--bg-input);
+  color: var(--text-main);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.8rem;
+  font-family: var(--font-body);
+  font-size: 0.88rem;
+  font-weight: 600;
+  outline: none;
+  cursor: pointer;
+}
+
+.btn-gothic-action {
+  background: linear-gradient(135deg, var(--bubblegum-pink), var(--bubblegum-tint));
+  color: #0c0612;
+  border: none;
+  padding: 0.65rem 1.35rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+  box-shadow: 0 4px 15px rgba(255, 92, 137, 0.35);
+}
+
+.btn-gothic-action:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 22px rgba(255, 92, 137, 0.55);
+}
+
+/* Divisor de Entradas */
+.feed-divider {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin: 1.8rem 0 1.2rem;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.divider-line {
+  flex-grow: 1;
+  height: 1px;
+  background: var(--border-color);
+}
+
+/* Muro de Notas Guardadas */
+.diary-feed {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  max-height: 380px;
+  overflow-y: auto;
+  padding-right: 0.4rem;
+}
+
+/* Scrollbar linda */
+.diary-feed::-webkit-scrollbar {
+  width: 6px;
+}
+.diary-feed::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 9999px;
+}
+
+.note-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.35rem;
+  position: relative;
+  transition: var(--transition);
+  animation: fadeIn 0.4s ease;
+}
+
+.note-card:hover {
+  border-color: var(--accent-primary);
+  transform: translateX(4px);
+}
+
+.note-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.65rem;
+}
+
+.note-mood-badge {
+  font-size: 0.82rem;
+  background: rgba(255, 92, 137, 0.15);
+  color: var(--accent-primary);
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-weight: 700;
+}
+
+.note-date {
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.note-text {
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--text-main);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.btn-delete-note {
+  background: transparent;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  font-size: 0.85rem;
+  margin-left: 0.5rem;
+  transition: var(--transition);
+}
+.btn-delete-note:hover {
+  color: #ff4757;
+  transform: scale(1.15);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+/* ==================== PESTAÑA 2: POMODORO MÁGICO ==================== */
+.pomodoro-card {
+  text-align: center;
+  padding: 1.5rem 0.5rem;
+}
+
+.potion-icon-wrapper {
+  margin-bottom: 0.8rem;
+}
+
+.potion-bubble {
+  font-size: 2.8rem;
+  color: var(--accent-primary);
+  filter: drop-shadow(0 0 15px rgba(255, 92, 137, 0.6));
+  animation: pulseGlow 2s infinite alternate;
+}
+
+@keyframes pulseGlow {
+  from { transform: scale(0.96); filter: drop-shadow(0 0 8px rgba(255, 92, 137, 0.4)); }
+  to { transform: scale(1.04); filter: drop-shadow(0 0 20px rgba(255, 92, 137, 0.8)); }
+}
+
+.pomodoro-status {
+  font-family: var(--font-gothic);
+  font-size: 1.9rem;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.pomodoro-subtitle {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  margin-bottom: 1.8rem;
+}
+
+/* Círculo Místico del Temporizador */
+.timer-orb {
+  width: 200px;
+  height: 200px;
+  margin: 0 auto 2rem;
+  border-radius: 50%;
+  border: 4px solid var(--accent-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, rgba(255, 92, 137, 0.12) 0%, transparent 75%);
+  box-shadow: 0 0 35px rgba(255, 92, 137, 0.3), inset 0 0 20px rgba(255, 92, 137, 0.2);
+}
+
+.timer-display {
+  font-family: var(--font-gothic);
+  font-size: 3.6rem;
+  color: var(--text-main);
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 15px rgba(255, 92, 137, 0.5);
+}
+
+/* Botones de Control */
+.timer-controls {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.2rem;
+}
+
+.btn-timer {
+  padding: 0.75rem 1.6rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 800;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: var(--transition);
+  border: none;
+}
+
+.btn-start {
+  background: linear-gradient(135deg, var(--bubblegum-pink), var(--bubblegum-tint));
+  color: #0c0612;
+  box-shadow: 0 4px 18px rgba(255, 92, 137, 0.45);
+}
+.btn-start:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+}
+
+.btn-pause {
+  background: var(--baby-pink);
+  color: #0c0612;
+  box-shadow: 0 4px 15px rgba(253, 168, 191, 0.4);
+}
+
+.btn-reset {
+  background: transparent;
+  color: var(--text-muted);
+  border: 1px solid var(--border-color);
+}
+.btn-reset:hover {
+  color: var(--text-main);
+  border-color: var(--accent-primary);
+}
+
+/* Vitrina de Pociones */
+.potion-trophy-shelf {
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-md);
+  padding: 1.2rem;
+}
+
+.shelf-label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-muted);
+  margin-bottom: 0.75rem;
+}
+
+.potion-tokens-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+  min-height: 35px;
+  align-items: center;
+}
+
+.token-placeholder {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+.potion-token {
+  font-size: 1.4rem;
+  animation: popIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+@keyframes popIn {
+  from { transform: scale(0); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+/* Footer */
+.grimoire-footer {
+  margin-top: 2.2rem;
+  text-align: center;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  border-top: 1px dashed var(--border-color);
+  padding-top: 1.2rem;
+}
+
+/* Notificación Flotante Toast */
+.magic-toast {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  padding: 0.85rem 1.4rem;
+  background: var(--bg-card);
+  border: 1px solid var(--accent-primary);
+  color: var(--text-main);
+  border-radius: var(--radius-sm);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 15px rgba(255, 92, 137, 0.35);
+  font-size: 0.9rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transform: translateY(80px);
+  opacity: 0;
+  transition: all 0.35s ease;
+  z-index: 1000;
+}
+.magic-toast.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+/* Móvil */
+@media (max-width: 600px) {
+  body {
+    padding: 0.8rem;
+  }
+  .gothic-frame {
+    padding: 1.8rem 1.2rem;
+  }
+  .gothic-title {
+    font-size: 2.1rem;
+  }
+  .timer-orb {
+    width: 170px;
+    height: 170px;
+  }
+  .timer-display {
+    font-size: 3rem;
+  }
+}

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grecia's Grimoire 🦇🎀 | Diario & Pomodoro</title>
+  
+  <!-- Fuentes de Google: Cinzel Decorative / Pirata One para títulos góticos y Quicksand para lectura cute -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Pirata+One&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Iconografía FontAwesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  
+  <!-- Hoja de Estilos -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Contenedor Principal con Marco Gótico y Estrellitas Victorianas ✦ -->
+  <main class="gothic-frame">
+    
+    <!-- Estrellitas de 4 puntas en las 4 esquinas del marco -->
+    <span class="corner-star top-left">✦</span>
+    <span class="corner-star top-right">✦</span>
+    <span class="corner-star bottom-left">✦</span>
+    <span class="corner-star bottom-right">✦</span>
+
+    <!-- Encabezado Estilo Akumai (con alas, cuernitos y título gótico) -->
+    <header class="grimoire-header">
+      <div class="header-emblem">
+        <span class="emblem-wing left">🦇</span>
+        <h1 class="gothic-title">Grecia's Grimoire</h1>
+        <span class="emblem-wing right">🦇</span>
+      </div>
+      
+      <p class="header-subtitle">✦ DIARIO OSCURO &amp; POCIÓN POMODORO ✦</p>
+
+      <!-- Botón Mágico para alternar entre Modo Vampiresa y Modo Hada Pastel -->
+      <button id="themeToggleBtn" class="btn-theme-toggle" title="Cambiar estética">
+        <span id="themeIcon">🎀</span>
+        <span id="themeLabel">Modo Pastel</span>
+      </button>
+    </header>
+
+    <!-- Barra de Pestañas (Tabs) para alternar entre Diario y Pomodoro -->
+    <nav class="grimoire-nav">
+      <button class="tab-btn active" data-tab="tab-diario" id="tabBtnDiario">
+        <i class="fa-solid fa-book-skull"></i> <span>Grimorio Privado</span>
+      </button>
+      <button class="tab-btn" data-tab="tab-pomodoro" id="tabBtnPomodoro">
+        <i class="fa-solid fa-hourglass-half"></i> <span>Poción Pomodoro</span>
+      </button>
+    </nav>
+
+    <!-- ==========================================
+         SECCIÓN 1: GRIMORIO / DIARIO PRIVADO
+         ========================================== -->
+    <section id="tab-diario" class="tab-content active">
+      
+      <!-- Tarjeta de Redacción -->
+      <div class="compose-card">
+        <label for="diaryInput" class="compose-label">
+          <i class="fa-solid fa-feather-pointed"></i> ¿Qué conjuro o pensamiento traes hoy, Grecia? 🕯️
+        </label>
+        
+        <textarea 
+          id="diaryInput" 
+          placeholder="Escribe aquí tu día, secretos, anécdotas o metas mágicas..." 
+          rows="3"
+        ></textarea>
+        
+        <div class="compose-footer">
+          <!-- Selector de Humor / Mood Whimsigoth -->
+          <div class="mood-box">
+            <span class="mood-title">Vibra:</span>
+            <select id="diaryMood">
+              <option value="🦇">🦇 Vampira</option>
+              <option value="🔮">🔮 Mágica</option>
+              <option value="🌙">🌙 Soñadora</option>
+              <option value="☕">☕ Sin Pócima / Cansada</option>
+              <option value="🖤">🖤 Diva Oscura</option>
+              <option value="🌸">🌸 Hada Dulce</option>
+            </select>
+          </div>
+          
+          <button id="saveNoteBtn" class="btn-gothic-action">
+            <i class="fa-solid fa-wand-magic-sparkles"></i> Encantar &amp; Guardar
+          </button>
+        </div>
+      </div>
+
+      <!-- Título de las Entradas del Muro -->
+      <div class="feed-divider">
+        <span class="divider-line"></span>
+        <span class="divider-text">✦ Memorias Encantadas ✦</span>
+        <span class="divider-line"></span>
+      </div>
+
+      <!-- Muro donde se renderizan las notas con JavaScript -->
+      <div id="diaryFeed" class="diary-feed">
+        <!-- Si no hay notas, JS colocará un mensaje bonito de inicio -->
+      </div>
+    </section>
+
+    <!-- ==========================================
+         SECCIÓN 2: POCIÓN POMODORO (ESTUDIO)
+         ========================================== -->
+    <section id="tab-pomodoro" class="tab-content">
+      
+      <div class="pomodoro-card">
+        <div class="potion-icon-wrapper">
+          <i class="fa-solid fa-flask-vial potion-bubble"></i>
+        </div>
+        
+        <h2 id="pomodoroStateTitle" class="pomodoro-status">Tiempo de Enfoque Mágico</h2>
+        <p class="pomodoro-subtitle">25 minutos de estudio profundo sin distracciones</p>
+        
+        <!-- Círculo Visual del Reloj -->
+        <div class="timer-orb">
+          <div class="timer-display">
+            <span id="timerMinutes">25</span>:<span id="timerSeconds">00</span>
+          </div>
+        </div>
+
+        <!-- Botones de Control del Temporizador -->
+        <div class="timer-controls">
+          <button id="startTimerBtn" class="btn-timer btn-start">
+            <i class="fa-solid fa-play"></i> Iniciar Pócima
+          </button>
+          
+          <button id="pauseTimerBtn" class="btn-timer btn-pause" style="display: none;">
+            <i class="fa-solid fa-pause"></i> Pausar
+          </button>
+          
+          <button id="resetTimerBtn" class="btn-timer btn-reset">
+            <i class="fa-solid fa-rotate-left"></i> Reiniciar
+          </button>
+        </div>
+
+        <!-- Vitrina de Pociones Completadas -->
+        <div class="potion-trophy-shelf">
+          <span class="shelf-label">Pociones ganadas hoy:</span>
+          <div id="potionTokens" class="potion-tokens-grid">
+            <!-- JS agregará moñitos/frasquitos aquí cada 25 mins completados -->
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Pie de página con créditos y vibra linda -->
+    <footer class="grimoire-footer">
+      <p>✦ Diseñado para Grecia Rivas • Hecho con magia, rosas y estilo pastel goth ✦</p>
+    </footer>
+
+  </main>
+
+  <!-- Notificación Flotante Mágica -->
+  <div id="magicToast" class="magic-toast"></div>
+
+  <!-- Sonido de campanita sutil cuando termina el pomodoro (Web Audio API) -->
+  <script src="script.js"></script>
+</body>
+</html>
